@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ActivityLauncher"
 include(":app")
+include(":caractivitylauncher")
