@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Define our own navigationIconTint to override the one from Car library -->
+    <attr name="navigationIconTint" format="color" />
+</resources>

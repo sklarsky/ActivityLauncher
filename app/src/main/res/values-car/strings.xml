@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Activity Launcher for Automotive</string>
+    <string name="dialog_disclaimer">Use this software at your own risk. Some apps might not behave as expected when their activities are launched in the wrong context leading to data loss or even worse. Some vehicle features might be affected by launching activities not designed for automotive use. You have been warned. Do you understand this and still want to use this software?</string>
+    <string name="automotive_warning">WARNING: Some activities may not be compatible with automotive systems and could interfere with driving experience. Only use this app when the vehicle is parked.</string>
+</resources>

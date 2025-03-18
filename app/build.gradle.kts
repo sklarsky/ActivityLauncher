@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    namespace = "de.szalkowski.activitylauncher"
+    namespace = "com.sklarskyj.activitylauncher"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "de.szalkowski.activitylauncher"
-        minSdk = 16
+        applicationId = "com.sklarskyj.activitylauncher"
+        minSdk = 29 // Increased for Android Automotive OS compatibility
         targetSdk = 34
         versionCode = 52
         versionName = "2.0.2"
@@ -41,11 +41,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     bundle {
         language {
@@ -74,6 +74,12 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-compiler:2.50")
+    
+    // Android Automotive support - completely excluded due to resource conflicts
+    // implementation("androidx.car:car:1.0.0-alpha7") {
+    //     exclude(group = "androidx.appcompat", module = "appcompat")
+    // }
+    
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

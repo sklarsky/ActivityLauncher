@@ -12,3 +12,11 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.10" apply false
     id("com.google.dagger.hilt.android") version "2.50" apply false
 }
+
+tasks.register("cleanBuildFolder") {
+    doLast {
+        exec {
+            commandLine("rm", "-rf", "app/build")
+        }
+    }
+}

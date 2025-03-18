@@ -1,6 +1,7 @@
 package de.szalkowski.activitylauncher
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -22,12 +23,16 @@ class MainActivity : AppCompatActivity(), ActionBarSearch {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private var isAutomotive = false
 
     @Inject
     internal lateinit var settingsService: SettingsService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Check if running on Android Automotive OS
+        isAutomotive = packageManager.hasSystemFeature(PackageManager.FEATURE_AUTOMOTIVE)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,6 +46,32 @@ class MainActivity : AppCompatActivity(), ActionBarSearch {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // Apply automotive-specific UI adjustments if needed
+        if (isAutomotive) {
+            applyAutomotiveUiAdjustments()
+        }
+    }
+
+    /**
+     * Apply UI adjustments for automotive displays:
+     * - Larger touch targets
+     * - Simplified UI for driving safety
+     */
+    private fun applyAutomotiveUiAdjustments() {
+        // Use larger padding for better touch targets in vehicles
+        binding.toolbar.setPadding(
+            binding.toolbar.paddingLeft,
+            binding.toolbar.paddingTop + 8,
+            binding.toolbar.paddingRight,
+            binding.toolbar.paddingBottom + 8
+        )
+
+        // Automotive-specific adjustments can be expanded here
+        // This could include:
+        // - Adjusting text sizes
+        // - Increasing button sizes
+        // - Simplifying UI for driving safety
     }
 
     override var onActionBarSearchListener: ((String) -> Unit)? = null
@@ -69,6 +100,14 @@ class MainActivity : AppCompatActivity(), ActionBarSearch {
                 return true
             }
         })
+
+        // If running on automotive, we might want to adjust the search UI for better usability
+        if (isAutomotive) {
+            searchView.maxWidth = resources.displayMetrics.widthPixels / 2
+            // Make the search icon larger for easier touch target in automotive
+            val searchItem = menu.findItem(R.id.search)
+            searchItem.icon?.setBounds(0, 0, 48, 48)
+        }
 
         return true
     }

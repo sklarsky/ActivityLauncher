@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="fab_margin">24dp</dimen>
+    
+    <!-- Automotive-specific dimensions with larger touch targets -->
+    <dimen name="list_item_padding">16dp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="icon_size">64dp</dimen>
+    <dimen name="button_height">64dp</dimen>
+    <dimen name="touch_target_min">64dp</dimen>
+</resources>

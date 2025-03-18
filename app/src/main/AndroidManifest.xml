@@ -5,7 +5,12 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
+    <!-- Automotive features -->
+    <uses-feature
+        android:name="android.hardware.type.automotive"
+        android:required="false" />
 
+    <!-- TV features -->
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
@@ -33,6 +38,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                <!-- Add Automotive app category -->
+                <category android:name="android.intent.category.CAR_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -45,11 +52,12 @@
             android:noHistory="true"
             android:theme="@style/Theme.NoDisplay">
             <intent-filter>
-                <action android:name="activitylauncher.intent.action.LAUNCH_SHORTCUT"/>
-                <action android:name="activitylauncher.intent.action.LAUNCH_ROOT_SHORTCUT"/>
+                <action android:name="com.sklarskyj.activitylauncher.intent.action.LAUNCH_SHORTCUT"/>
+                <action android:name="com.sklarskyj.activitylauncher.intent.action.LAUNCH_ROOT_SHORTCUT"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
